@@ -61,7 +61,7 @@ $(function(){
         }else{
         result.forEach(function(item){
            item.descricao = item.descricao || "";
-            var itens = "<a class='list-group-item'  href='http://mjca2.com.br/admin/arquivos/laudo/"+item.arquivo+"'><p>Arquivo: "+item.arquivo+"</p><p>Descrição: "+item.descricao+"</p></a>"
+            var itens = "<a class='list-group-item' download="+item.arquivo+" href='http://mjca2.com.br/admin/arquivos/laudo/"+item.arquivo+"'><p>Arquivo: "+item.arquivo+"</p><p>Descrição: "+item.descricao+"</p></a>"
             $('.list-group').append(itens);
         });
        }
