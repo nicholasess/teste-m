@@ -114,9 +114,9 @@
                        <li><h5 id="nTerceiroAssis"><strong><img src="img/assistente.png" width="15"/>   </strong> <span></span></h5></li>
                     </div>
 
-                    <div class="opc">
+                    <!-- <div class="opc">
                     <h4><a id="arquivos">ARQUIVOS</a></h4>
-                    </div>
+                    </div> -->
 
                     <div class="opc">
                     <h4><a id="avisos">AVISOS</a></h4>
@@ -161,7 +161,7 @@
           console.log(result)
           codigo = result.codigo;
           localStorage.setItem('codigo', codigo);
-          $('#arquivos').attr('href', 'arquivo/index.html?codigo='+codigo);
+          // $('#arquivos').attr('href', 'arquivo/index.html?codigo='+codigo);
           $('#avisos').attr('href', 'aviso/index.html?codigo='+codigo);
           $('#anotacoes').attr('href', 'anotacao/index.html?codigo='+codigo);
           
