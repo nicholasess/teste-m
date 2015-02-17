@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Processo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/fastclick.js"></script>
+    <style type="text/css">
+    .form-control, .btn{
+      border-radius: 0;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+    .logo{
+      text-align: center;
+      width: 220px;
+      height: 100px;
+      left: 50%;
+      margin-left: -320px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    #form{
+    left: 50%;
+    top:40%;
+    margin-left: -150px;
+    margin-top: -100px;
+    width: 300px;
+    position: absolute;
+    text-align: center;
+    }
+    label{
+      font-size: 16px;
+      color: #e74c3c;
+    }
+
+    #msg-erro{
+      display: none;
+    }
+    
+body{
+    background-color: #ddd;
+  }
+    </style>
+  </head>
+  <body>
+   <img src="img/load.gif" class="gif-load">
+   <div class="container">
+    <div id="form">
+      <div class="row">
+         <div class="col-md-12">
+           <img src="img/logo.png" class="logo">
+         </div>
+         <div class="col-md-12">
+           <input type="text" class="form-control" id="login" placeholder="Digite o usuário">
+         </div>
+         <div class="col-md-12">
+           <input type="password" class="form-control" id="senha" placeholder="Digite a senha">
+           <label id="msg-erro">Login ou senha íncorreto(a) !</label>
+         </div>
+         <div class="col-md-12">
+           <button class="btn btn-success btn-block" id="btn-entrar">Entrar</button>
+         </div>
+       </div>
+    </div>  
+     </div>
+   </div>    
+   <script src="js/jquery.js"></script>
+   <script src="js/vibe-lib.js"></script>
+   <script type="text/javascript">
+   $(function(){
+      $('#btn-entrar').click(function(e){
+          e.preventDefault();
+          
+          var $login = $('#login').val();
+          var $senha = $('#senha').val();
+
+          var data = {
+            login: $login,
+            senha: $senha
+          };
+
+          var url = "login.php";
+          AjaxPost(urlServer+url, data, function(err, result){
+            if(result.length > 0){
+              location.replace('home.html');
+            }else{
+              $('#msg-erro').css('display', 'block');
+            }
+          });
+      });
+   });
+   </script>    
+  </body>
+</html>

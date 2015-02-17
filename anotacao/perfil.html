@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Aviso</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <script src="../js/fastclick.js"></script>
+        <style type="text/css">
+        #desc{
+          word-break: break-all;
+        }
+        </style>
+</head>
+<body>
+  <div class="menu">    
+    <div class="container">
+        <a href="../home.html"> <img src="../img/inicio.png" width="30" /></a>
+         <h3 class="title-mesa">MENU</h3>
+         <a href="../lista.html"><img src="../img/info.png" width="40" class="right" /></a>
+    </div>
+  </div>
+  <br />
+  <div class="container">
+      <div class="row">
+      
+          <div class="col-md-12">
+              <label>Título</label>
+              <p id="titulo"></p>
+          </div>
+          <div class="col-md-12">
+              <label>Data de Término</label>
+              <p id="data"></p>
+          </div>
+          <div class="col-md-12">
+              <label>Observação</label>
+              <p id="desc"></p>
+          </div>
+
+          <br />
+          <div class="col-md-12">
+              <a href="#" id="cancelar" class="btn btn-danger btn-block btn-lg">Fechar</a>
+          </div>
+      </div>
+  </div>
+<script src="../js/jquery.js"></script>
+<script src="../js/vibe-lib.js"></script>
+   <script type="text/javascript">
+   $(function(){
+      var url = urlServer+"perfil_anotacoes.php";
+      var id = location.search.split("=")[1];
+      
+      AjaxGet(url, {id: id}, function(err, result){
+        result = result[0];
+        $('#titulo').text(result.titulo);
+        $('#data').text(formatData(result.data));
+        $('#desc').text(result.descricao);
+      });
+
+      $('#codigo').val(id);
+
+      $('#fechar').click(function(e){
+        e.preventDefault();
+        var valor = confirm('Deseja fechar o Aviso: '+ $('#titulo').text());
+        if(valor){
+          var url = urlServer+"fechar_anotacoes.php";
+          AjaxGet(url, {id: id}, function(err, result){
+             console.log(err, result);
+          });
+        }
+      });
+
+      $('#cancelar').click(function(e){
+        e.preventDefault();
+        var valor = confirm('Deseja excluir o Aviso: '+ $('#titulo').text());
+
+        if(valor){
+          var url = urlServer+"excluir_anotacoes.php";
+          AjaxGet(url, {id: id}, function(err, result){
+              console.log(result);
+              if(JSON.parse(result)){
+                goIndex();
+              }
+          });
+        }
+      });
+
+      function goIndex(){
+        var numero = localStorage.getItem('codigo');
+        location.replace("index.html?numero="+numero);
+      }
+   });
+   </script>
+  </body>
+</html> 

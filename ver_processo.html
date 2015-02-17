@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Processo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style type="text/css">
+      .menu img{float: left; margin: 12px 10px 0 0}
+      .menu img.right{float:right; border:2px solid #000; background:#d9534f; padding:10px; margin:0}
+      .menu img.right:hover{float:right; border:2px solid #000; background:#c33; padding:10px; margin:0}
+      .menu img:hover{background:#f9f9f9; padding: 5px; cursor: pointer}
+      .menu h3{float: left; margin-left: 20px}
+      a{text-decoration: none}
+      a:hover{text-decoration: none; background: #ccc}
+      ul{ margin: 0}
+      li{background: #fff;}
+      li h4{color:#468847; padding:10px 5px; background:#dff0d8; border:5px solid #d6e9c6; font-weight:bold}
+      li ul{padding: 0; margin:10px 0; list-style: none}
+      li ul li h5{color: #999; font-weight: bold}
+      li ul li h5 strong{ color: #3f3f3e; padding:0 10px}
+      .data {border:1px solid #ccc; background:#fff;}
+      .data li{float: left; padding: 0px 15px; }
+      .hono li{padding: 2px; border:1px solid #ccc; text-align: left; background: #f9f9f9}
+      .hono li span{float: right}
+      .hono h4{padding: 5px; color: #b94a48; background: #f2dede;  border-color: #eed3d7;}
+      .opc li{padding: 2px; border:1px solid #ccc; text-align: left; background: #f9f9f9}
+      .opc li span{float: right}
+      .opc h4{padding: 5px;  color: #333;background-color: #CCC;border-color: #000;}
+      .opc h4 a{color: black}
+      .hist li{border:1px solid #ccc; text-align: left; background: #f9f9f9; padding: 5px}
+      .hist li strong{padding: 5px 0px; color: #fff;}
+      .hist li span{width:66%; padding: 5px}
+      .hist h4{padding: 5px;}
+      .pessoas{padding: 10px;}
+
+      #processo{
+        font-size:13px; color:#999
+      }
+      #historico h5{min-height: 20px; width: 100%; word-break: break-all;}
+      #verde{
+        color: #063;
+      }
+      #amarelo{
+        color: #fc0;
+      }
+      #vermelho{
+        color: red;
+      }
+      
+    </style>
+    <script src="js/fastclick.js"></script>
+  </head>
+
+  <body>
+   <div class="menu">
+    
+    <div class="container">
+         <a href="home.html"><img src="img/inicio.png" width="30" /></a>
+         <h3 class="title-mesa">Ver Processo</h3><a href="lista.html"><img src="img/info.png" width="40" class="right" /></a>
+    </div>
+  </div>
+  <img src="img/load.gif" class="gif-load">
+  <div class="container">
+      <div class="row">
+       
+        <ul class="list-group">
+          <li class="list-group-item">
+              <h4>Processo Nº <span id="processo"></span></h4>
+                <ul>
+                 <div class="data">
+                    <li><h5 id="dataEnt"><strong><img src="img/entrada.png" width="25"/></strong> </h5></li>
+                    <li><h5 id="dataFim"><strong><img src="img/fim.png" width="22"/> </strong> </h5></li>
+                    <div style="clear:both"></div>
+                  </div>
+                    <li><h5 id="perito"><strong><img src="img/peritos.png" width="25"/> </strong> </h5></li>
+                    <li><h5 id="especialidade"><strong><img src="img/especialidades.png" width="25"/>  </strong> </h5></li>
+                    <li><h5 id="cidade"><strong><img src="img/cidades.png" width="25"/>  </strong></h5></li>
+                    <li><h5 id="valorAcao"><strong><img src="img/relatorios.png" width="25"/></strong> <span></span></h5></li>
+                    <div class="hono">
+                     <li><h5 id="honoPrev"><strong>Honorário Prov.  </strong>  <span></span></h5></li>
+                     <li><h5 id="honoPed"><strong>Honorário Ped.  </strong> <span></span></h5></li>
+                     <li><h5 id="honoCor"><strong>Honorário Pago.  </strong> <span></span></h5></li>
+                    </div>
+                    <br>
+                    <div class="hono">
+                    <h4><span>AUTOR</span></h4>
+             
+                       <li><h5 id="autorNome"><strong> </strong></h5></li>
+                       <li><h5 id="nAutorAdv"><strong><img src="img/adv.png" width="15"/>  </strong> <span></span></h5></li>
+                       <li><h5 id="nAutorAssis"><strong><img src="img/assistente.png" width="15"/>   </strong> <span></span></h5></li>
+                    </div>
+                    <div class="hono">
+                    <h4><span>RÉU</span></h4>
+             
+                       <li><h5 id="reuNome"><strong> </strong>  </h5></li>
+                       <li><h5 id="nReuAdv"><strong><img src="img/adv.png" width="15"/>  </strong> <span></span></h5></li>
+                       <li><h5 id="nReuAssis"><strong><img src="img/assistente.png" width="15"/>   </strong> <span></span></h5></li>
+                    </div>
+                    <div class="hono">
+                    <h4><span>TERCEIRO</span></h4>
+             
+                       <li><h5 id="terceiroNome"><strong> </strong>  </h5></li>
+                       <li><h5 id="nTerceiroAdv"><strong><img src="img/adv.png" width="15"/>  </strong> <span></span></h5></li>
+                       <li><h5 id="nTerceiroAssis"><strong><img src="img/assistente.png" width="15"/>   </strong> <span></span></h5></li>
+                    </div>
+
+                    <div class="opc">
+                    <h4><a id="arquivos">ARQUIVOS</a></h4>
+                    </div>
+
+                    <div class="opc">
+                    <h4><a id="avisos">AVISOS</a></h4>
+                    </div>
+
+                    <div class="opc">
+                    <h4><a id="peticoes">PETIÇÕES</a></h4>
+                    </div>
+                    
+                    <div class="opc">
+                    <h4><a id="anotacoes">ANOTAÇÕES</a></h4>
+                    </div>
+
+                    <div class="hist">
+                    <h4><span>HISTÓRICO</span></h4>
+                       <li id="historico"></li>
+                    </div>
+                </ul>
+
+            </li>
+          </ul>
+        </div>
+
+    </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/vibe-lib.js"></script>
+  <script src="js/account.js"></script>
+  <script type="text/javascript">
+  $(function(){
+      var url = urlServer+"perfil_processos.php";
+      var campos = location.search.split("&");
+      var codigo = campos[0].split('=')[1];
+      var numero = campos[1].split('=')[1];
+      
+      localStorage.setItem('numero', numero);
+      
+      AjaxGet(url,{codigo: codigo} ,Result);
+      
+      function Result(err, result){
+          result = result[0];
+          console.log(result)
+          codigo = result.codigo;
+          localStorage.setItem('codigo', codigo);
+          $('#arquivos').attr('href', 'arquivo/index.html?codigo='+codigo);
+          $('#avisos').attr('href', 'aviso/index.html?codigo='+codigo);
+          $('#anotacoes').attr('href', 'anotacao/index.html?codigo='+codigo);
+          
+          $('#dataEnt').append(formatData(result.dataEnt))
+          $('#dataFim').append(formatData(result.dataFim))
+
+          $('#perito').append(result.nomePerito);
+          $('#processo').text(result.numero);
+          $('#especialidade').append(tipoPerso(result.especialidade));
+          $('#valorAcao span').append(accounting.formatMoney(result.valorAcao, "R$", 2, ".", ","));
+          $('#honoPrev span').append(accounting.formatMoney(result.honoPrev, "R$", 2, ".", ","));
+          $('#honoPed span').append(accounting.formatMoney(result.honoPed, "R$", 2, ".", ","));
+          $('#honoCor span').append(accounting.formatMoney(result.honoCor, "R$", 2, ".", ","));
+          $('#cidade').append(result.nCidade +"/ VARA "+ result.id);
+          
+          $('#autorNome').append(result.autorNome);
+          $('#nAutorAdv span').append(result.nAutorAdv);
+          $('#nAutorAssis span').append(result.nAutorAssis);
+
+          $('#reuNome').append(result.reuNome);
+          $('#nReuAdv span').append(result.nReuAdv);
+          $('#nReuAssis span').append(result.nReuAssis);
+
+          $('#terceiroNome').append(result.terceiroNome);
+          $('#nTerceiroAdv span').append(result.nTerceiroAdv);
+          $('#nTerceiroAssis span').append(result.nTerceiroAssis);
+
+          var url2 = urlServer+"historico.php";
+          AjaxGet(url2,{codigo: result.codigo} ,Result2);
+          
+          function Result2(err, result){ 
+          
+              result.forEach(function(item){
+                var itens = "<h5>";
+                    itens += "<strong id="+tipoHist(item.opcao)+">"+nameHist(item.opcao)+"</strong>";
+                    itens += "<span>"+item.descricao+" "+formatData(item.data)+"</span>";
+                    itens += "</h5>";
+                    itens += "<div style='clear:both'></div>";
+                $('#historico').append(itens);       
+              });
+          }
+      }
+
+      function tipoPerso(tipo){
+        switch(tipo){
+          case "cr": return "CRIMINAL";
+          break;
+          case "ci": return "CIVEL";
+          break;
+          case "fs": return "FAMILIA/SUSSEÇÕES";
+          break;
+          case "tr": return "TRABALHISTA";
+          break;
+          case "fp": return "FAZENDA PÚBLICA";
+          break;
+          case "fm": return "FAZENDA MUNICIPAL";
+          break;
+          case "ff": return "FAMILIA FEDERAL";
+          break;
+          case "fe": return "FAZENDA ESTADUAL";
+          break;
+        }
+      }
+
+      function tipoHist(opcao){
+        return "verde";
+      }
+
+      function nameHist(opcao){
+        switch(opcao){
+          case "1": return "INICIO:";
+          break;
+          case "2": return "ALTERAÇÃO:";
+          break;
+          case "3": return "PETIÇÃO:";
+          break;
+          case "4": return "AVISO:";
+          break;
+          case "5": return "ANOTAÇÃO:";
+          break;
+          case "6": return "FINALIZADO:";
+          break;
+          case "7": return "REABERTO:";
+          break;
+
+        }
+      }
+  });
+  </script>
+  </body>
+</html>

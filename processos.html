@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Processo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style type="text/css">
+      .menu img{float: left; margin: 12px 10px 0 0}
+      .menu img.right{float:right; border:2px solid #000; background:#d9534f; padding:10px; margin:0}
+      .menu img.right:hover{float:right; border:2px solid #000; background:#c33; padding:10px; margin:0}
+      .menu img:hover{background:#f9f9f9; padding: 5px; cursor: pointer}
+      .menu h3{float: left; margin-left: 20px}
+      a{text-decoration: none}
+      a:hover{text-decoration: none; background: #f9f9f9;}
+      a h4{color:#468847; padding:10px 5px; background:#dff0d8; border:5px solid #d6e9c6; font-weight:bold}
+      a ul{padding: 0; margin:10px 0; list-style: none}
+      a ul li h5{color: #999; font-weight: bold; color: #3f3f3e; padding:0 10px}      
+      a ul div {border:1px solid #ccc; background:#fff;}
+      a ul div li{float: left; padding: 0px 15px; }
+      
+    </style>
+    <script src="js/fastclick.js"></script>
+  </head>
+
+  <body>
+   <div class="menu">
+    
+    <div class="container">
+         <a href="home.html"><img src="img/inicio.png" width="30" /></a>
+         <h3 class="title-mesa">Processos</h3><a href="lista.html"><img src="img/info.png" width="40" class="right" /></a>
+    </div>
+
+  </div>
+ <img src="img/load.gif" class="gif-load">
+  <div class="container">
+      <div class="row">
+        <ul class="list-group"></ul>
+      </div>
+  </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/vibe-lib.js"></script>
+  <script type="text/javascript">
+  $(function(){
+    var url = urlServer+"listar_processos.php";
+    AjaxGet(url, null, Result);
+
+    function Result(err, result){
+        
+        if(result == null){
+            var item = msgAlert("Não tem nenhum processo");
+            $('.list-group').append(item).css("text-align", "center");
+        }else{
+          
+          $('.list-group').empty();
+            result.forEach(function(item){
+              console.log(item);
+              var itens =   "<a href='ver_processo.html?numero="+item.codigo+"&processo="+item.nprocesso+"' class='list-group-item'>";
+              itens +=   "<h4>Processo Nº <span style='font-size:13px;color:#999'>"+item.nprocesso+"</span></h4>";
+              itens += "<ul>";
+              itens += "<div>";
+              itens += "<li><h5><img src='img/entrada.png' width='25'/> "+formatData(item.dataEnt)+"</h5></li>";
+              itens += "<li><h5><img src='img/fim.png' width='22'/>  "+formatData(item.dataFinal)+"</h5></li>";
+              itens += "<div style='clear:both'></div>";
+              itens += "</div>";
+              itens += "<li><h5><img src='img/peritos.png' width='25'/>  "+item.perito+"</h5></li>";
+              itens += "<li><h5><img src='img/especialidades.png' width='25'/>  "+item.especialidade+"</h5></li>";
+              itens += "<li><h5><img src='img/cidades.png' width='25'/> "+item.cidade+"</h5></li>";
+              itens += "</ul>";
+              itens += "</a>";
+              $('.list-group').append(itens);
+            });
+        }
+    }
+  });
+  </script>
+  </body>
+</html>

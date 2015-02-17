@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Aviso</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style type="text/css">
+    .list-group-item{
+        cursor: pointer;
+    }
+    .row{
+      margin-bottom: 10px;
+    }
+    </style>
+    <script src="js/fastclick.js"></script>
+</head>
+<body>
+  <div class="menu">
+    
+    <div class="container">
+        <a href="home.html"> <img src="img/inicio.png" width="30" /></a>
+         <h3 class="title-mesa">MENU</h3><a href="lista.html"><img src="img/info.png" width="40" class="right" /></a>
+    </div>
+  </div>
+  <img src="img/load.gif" class="gif-load">
+  <br />
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <a href="aviso_fim.html" class="btn btn-primary btn-block btn-lg">Avisos <span class="badge aviso"></span></a>
+          </div>
+      </div>
+      <br />
+      <div class="row">
+          <div class="col-md-12">
+              <a href="processo_fim.html" class="btn btn-warning btn-block btn-lg">Processos <span class="badge processo"></span></a>
+          </div>
+      </div>
+  </div>
+</html>
+
+<script src="js/jquery.js"></script>
+<script src="js/vibe-lib.js"></script>
+<script type="text/javascript">
+$(function(){
+    var url = urlServer+"avisos_fim.php";    
+    AjaxGet(url, null, function(err, result){
+      $('.aviso').text(result.length);
+    });
+    var url = urlServer+"processos_fim.php";    
+    AjaxGet(url, null, function(err, result){
+      $('.processo').text(result.length);
+    });
+});
+</script>

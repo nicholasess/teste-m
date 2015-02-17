@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Aviso</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <style type="text/css">
+    .list-group-item{
+        cursor: pointer;
+        word-break: break-all; 
+    }
+    </style>
+    <script src="../js/fastclick.js"></script>
+</head>
+<body>
+  <div class="menu">
+    
+    <div class="container">
+        <a href="../home.html"> <img src="../img/inicio.png" width="30" /></a>
+         <h3 class="title-mesa">MENU</h3>
+         <a href="../lista.html"><img src="../img/info.png" width="40" class="right" /></a>
+    </div>
+  </div>
+  <img src="../img/load.gif" class="gif-load">
+  <br />
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <a id="avisos" class="btn btn-success btn-block btn-lg">Adicionar Aviso</a>
+          </div>
+      </div>
+      <div class="row">
+          <div class="list-group"></div>
+      </div>
+  </div>
+<script src="../js/jquery.js"></script>
+<script src="../js/vibe-lib.js"></script>
+<script type="text/javascript">
+$(function(){
+    var url = urlServer+"avisos.php";
+    var codigo = location.search.split("=")[1];
+    $('#avisos').attr('href', 'add.html?codigo='+codigo);
+    AjaxGet(url, {codigo: codigo}, function(err, result){
+        console.log(result);
+        var processos = result.processos[0];
+        var avisos = result.avisos;
+        avisos.forEach(function(item){
+          
+            var itens = "<a href='perfil.html?id="+item.id+"'  class='list-group-item' id='"+item.codigo+"-"+item.titulo+"'><p>"+processos.numero+"</p><p>"+item.titulo+"</p><p>"+formatData(item.data)+"</p><p>Obs: "+item.descricao+"</p></a>"
+            $('.list-group').append(itens);
+        });
+    });
+
+});
+</script>    
+</body>
+</html>

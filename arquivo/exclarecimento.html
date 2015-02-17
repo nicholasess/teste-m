@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Aviso</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <style type="text/css">
+    body{
+      background-color: #ddd;
+    }
+    .list-group-item{
+        cursor: pointer;
+        background-color: white;
+        border: 1px solid #3f3f3e;
+    }
+    p{
+      color: black;
+      font-weight: bold;
+    }
+
+    </style>
+    <script src="../js/fastclick.js"></script>
+</head>
+<body>
+  <div class="menu">
+    
+    <div class="container">
+        <a href="home.html"> <img src="../img/inicio.png" width="30" /></a>
+         <h3 class="title-mesa">MENU</h3>
+         <a href="lista.html"><img src="../img/info.png" width="40" class="right" /></a>
+    </div>
+  </div>
+  <img src="../img/load.gif" class="gif-load">
+  <br />
+  <div class="container">
+      <div class="row">
+          <div class="list-group"></div>
+      </div>
+  </div>
+<script src="js/jquery.js"></script>
+<script src="js/vibe-lib.js"></script>
+<script type="text/javascript">
+$(function(){
+    var url = urlServer+"avisos_fim.php";    
+    AjaxGet(url, null, function(err, result){
+        console.log(result);
+        if(result == null){
+            var item = msgAlert("Não tem nenhum aviso");
+            $('.list-group').append(item).css("text-align", "center");
+        }else{
+        result.forEach(function(item){
+           item.descricao = item.descricao || "";
+            var itens = "<a class='list-group-item'  href='ver_processo.html?numero="+item.codigo+"'><p>Nª "+item.numero+"</p><p>Título: "+item.titulo+"</p><p>Data: "+formatData(item.dataFinal)+"</p><p>Obs: "+item.descricao+"</p></a>"
+            $('.list-group').append(itens);
+        });
+       }
+    });
+});
+</script>    
+</body>
+</html>

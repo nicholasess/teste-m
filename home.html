@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Processo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style type="text/css">
+    .list-group-item{
+      text-align: center;
+    }
+    </style>
+    <script src="js/fastclick.js"></script>
+
+  </head>
+
+  <body>
+  <div class="menu">
+    
+    <div class="container">
+        <a href="home.html"> <img src="img/inicio.png" width="30" /></a>
+         <h3 class="title-mesa">MENU</h3><a href="lista.html"><img src="img/info.png" width="40" class="right" /></a>
+    </div>
+
+  </div>
+  <img src="img/load.gif" class="gif-load">
+  <div class="container">
+      <div class="row" style="background:#5bc0de; padding:10px; margin-top:10px; border-top:2px solid #3f3f3e; border-bottom:2px solid #3f3f3e" >
+      <h6 style="font-weight:bold">BUSQUE POR Nº DO PROCESSO</h6>
+        <div style="float:left; padding:0; width:80%; height:60px">
+          <input type="text" class="form-control" name="buscar" id="buscar" />
+          <ul id="result"> 
+            
+          </ul>
+        </div>
+         <div class="col-md-4" style="float:left;  background:#ccc; padding:0; width:20%" >
+           <button class="btn btn-success btn-block" style="background:#3f3f3e; width:100%">Buscar</button>
+        </div>
+      </div>
+      <div class="row">
+         <ul class="list-group">
+          <a href="processos.html"><li class="list-group-item"><img src="img/processos.png" /><h3>Processos em Andamento</h3></li></a>
+        </ul>
+      </div>
+
+  </div>
+   <script src="js/jquery.js"></script>
+   <script src="js/vibe-lib.js"></script>
+   <script type="text/javascript">
+   
+   $(function(){
+
+
+      $('#buscar').on('keyup',function(e){
+        e.preventDefault();
+        var url = urlServer+"busca_processo.php";
+        var valor = $(this).val();
+        AjaxGet(url, {campo: $(this).val()}, function(err, result){
+            console.log(result);
+            if(valor.length > 0){
+              $('#result').css("display", "block");
+                $('#result').empty();
+                result.forEach(function(item){
+                    var i = "<li><a href='ver_processo.html?numero="+item.codigo+"&processo="+item.numero+"'>Nº "+item.numero+"</a></li>";
+                    $('#result').append(i);
+                });
+            }else{
+              $('#result').css("display", "none");
+            }
+        });
+      })
+   });
+   </script>    
+  </body>
+</html>
