@@ -48,14 +48,18 @@ $(function(){
     var codigo = location.search.split("=")[1];
     $('#avisos').attr('href', 'add.html?codigo='+codigo);
     AjaxGet(url, {codigo: codigo}, function(err, result){
-        console.log(result);
+        
         var processos = result.processos[0];
         var avisos = result.avisos;
-        avisos.forEach(function(item){
-          
+        if(result == null || result.length == 0){
+            var item = msgAlert("Não tem nenhum aviso");
+            $('.list-group').append(item).css("text-align", "center");
+        }else{
+        avisos.forEach(function(item){   
             var itens = "<a href='perfil.html?id="+item.id+"'  class='list-group-item' id='"+item.codigo+"-"+item.titulo+"'><p>"+processos.numero+"</p><p>"+item.titulo+"</p><p>"+formatData(item.data)+"</p><p>Obs: "+item.descricao+"</p></a>"
             $('.list-group').append(itens);
         });
+      }
     });
 
 });

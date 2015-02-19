@@ -106,7 +106,7 @@
                        <li><h5 id="nReuAdv"><strong><img src="img/adv.png" width="15"/>  </strong> <span></span></h5></li>
                        <li><h5 id="nReuAssis"><strong><img src="img/assistente.png" width="15"/>   </strong> <span></span></h5></li>
                     </div>
-                    <div class="hono">
+                    <div class="hono" id="terceiro">
                     <h4><span>TERCEIRO</span></h4>
              
                        <li><h5 id="terceiroNome"><strong> </strong>  </h5></li>
@@ -164,6 +164,7 @@
           // $('#arquivos').attr('href', 'arquivo/index.html?codigo='+codigo);
           $('#avisos').attr('href', 'aviso/index.html?codigo='+codigo);
           $('#anotacoes').attr('href', 'anotacao/index.html?codigo='+codigo);
+          $('#peticoes').attr('href', 'peticao/index.html?codigo='+codigo);
           
           $('#dataEnt').append(formatData(result.dataEnt))
           $('#dataFim').append(formatData(result.dataFim))
@@ -184,11 +185,13 @@
           $('#reuNome').append(result.reuNome);
           $('#nReuAdv span').append(result.nReuAdv);
           $('#nReuAssis span').append(result.nReuAssis);
-
-          $('#terceiroNome').append(result.terceiroNome);
-          $('#nTerceiroAdv span').append(result.nTerceiroAdv);
-          $('#nTerceiroAssis span').append(result.nTerceiroAssis);
-
+          if(result.temTerceiro != null){
+            $('#terceiroNome').append(result.terceiroNome);
+            $('#nTerceiroAdv span').append(result.nTerceiroAdv);
+            $('#nTerceiroAssis span').append(result.nTerceiroAssis);
+          }else{
+            $('#terceiro').css("display", "none");
+          }
           var url2 = urlServer+"historico.php";
           AjaxGet(url2,{codigo: result.codigo} ,Result2);
           

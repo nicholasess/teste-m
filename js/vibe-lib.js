@@ -7,16 +7,15 @@
         data: data,
         url: url,
         beforeSend: function() {
-           $('gif-load').css('display', 'block');
-        },
-        success: function(data){
-            callback(null, data);
-        },
-        error: function(data){
-            callback(data, null);
+           spinnerplugin.show({
+              overlay: false,    // defaults to true
+              timeout: 30,       // defaults to 0 (no timeout)
+              fullscreen: true,  // defaults to false
+          });
         },
         complete:function() {
-           $('gif-load').css('display', 'none');
+           callback(null, data);
+           spinnerplugin.hide();
         }
         });
     }
@@ -29,14 +28,9 @@
         beforeSend: function() {
            $('gif-load').css('display', 'block');
         },
-        success: function(data){
-            callback(null, data);
-        },
-        error: function(data){
-            callback(data, null);
-        },
         complete:function() {
            $('gif-load').css('display', 'none');
+           callback(null, data);
         }
         });
     }

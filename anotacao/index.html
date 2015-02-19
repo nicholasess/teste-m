@@ -35,8 +35,11 @@
               <a id="avisos" class="btn btn-success btn-block btn-lg">Adicionar Anotações</a>
           </div>
       </div>
+      <br>
       <div class="row">
+      <div class="col-md-12">
           <div class="list-group"></div>
+      </div>
       </div>
   </div>
 <script src="../js/jquery.js"></script>
@@ -47,12 +50,16 @@ $(function(){
     var codigo = location.search.split("=")[1];
     $('#avisos').attr('href', 'add.html?codigo='+codigo);
     AjaxGet(url, {codigo: codigo}, function(err, result){
-        console.log(result);
-        result.forEach(function(item){
-          console.log(item);
-            var itens = "<a href='perfil.html?id="+item.id+"'  class='list-group-item' id='"+item.codigo+"-"+item.titulo+"'><p>"+item.titulo+"</p><p>"+formatData(item.data)+"</p><p>Obs: "+item.descricao+"</p></a>"
-            $('.list-group').append(itens);
-        });
+        if(result == null || result.length == 0){
+            var item = msgAlert("Não tem nenhuma anotação");
+            $('.list-group').append(item).css("text-align", "center");
+        }else{
+          result.forEach(function(item){
+            console.log(item);
+              var itens = "<a href='perfil.html?id="+item.id+"'  class='list-group-item' id='"+item.codigo+"-"+item.titulo+"'><p>"+item.titulo+"</p><p>"+formatData(item.data)+"</p><p>Obs: "+item.descricao+"</p></a>"
+              $('.list-group').append(itens);
+          });
+       }
     });
 });
 </script>    

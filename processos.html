@@ -56,7 +56,7 @@
 
     function Result(err, result){
         
-        if(result == null){
+        if(result == null || result.length == 0){
             var item = msgAlert("Não tem nenhum processo");
             $('.list-group').append(item).css("text-align", "center");
         }else{

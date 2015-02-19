@@ -12,6 +12,7 @@
         <author email="nicholasess@gmail.com" href="http://www.nicholasess.com.br">
         Vibesoft
         </author>
+        <gap:plugin name="it.mobimentum.phonegapspinnerplugin" />
     <content src="index.html" />
     <access origin="*" />
 </widget>

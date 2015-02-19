@@ -40,7 +40,7 @@ $(function(){
     var url = urlServer+"processos_fim.php";    
     AjaxGet(url, null, function(err, result){
         console.log(result);
-        if(result == null){
+        if(result == null || result.length == 0){
           var item = msgAlert("Não tem nenhum processo");
           $('.list-group').append(item).css("text-align", "center");
         }else{
