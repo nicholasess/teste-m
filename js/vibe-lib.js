@@ -7,15 +7,11 @@
         data: data,
         url: url,
         beforeSend: function() {
-           spinnerplugin.show({
-              overlay: false,    // defaults to true
-              timeout: 30,       // defaults to 0 (no timeout)
-              fullscreen: true,  // defaults to false
-          });
+           $('gif-load').css('display', 'block');
         },
         complete:function() {
            callback(null, data);
-           spinnerplugin.hide();
+           $('gif-load').css('display', 'none');
         }
         });
     }
